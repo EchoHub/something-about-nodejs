@@ -21,5 +21,8 @@
   "homepage": "https://github.com/EchoHub/something-about-nodejs#readme",
   "devDependencies": {
     "webpack": "^4.6.0"
+  },
+  "dependencies": {
+    "express": "^4.16.3"
   }
 }
