@@ -20,6 +20,11 @@
   },
   "homepage": "https://github.com/EchoHub/something-about-nodejs#readme",
   "devDependencies": {
+    "clean-webpack-plugin": "^0.1.19",
+    "css-loader": "^0.28.11",
+    "path": "^0.12.7",
+    "style-loader": "^0.21.0",
+    "ts-loader": "^4.2.0",
     "webpack": "^4.6.0"
   },
   "dependencies": {

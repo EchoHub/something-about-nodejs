@@ -6,4 +6,5 @@
 ###  Hello World
     - express 安装 npm i express -g  
       cnpm 淘宝代理设置 npm install -g cnpm --registry=https://registry.npm.taobao.org
-    - hello world
+    - hello world， 详情请看lesson1 进入lesson1 执行node app.js 服务器就跑起来了
+    - express-generator 生成器
