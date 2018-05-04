@@ -7,9 +7,13 @@
 - express 安装 npm i express -g  
   cnpm 淘宝代理设置 npm install -g cnpm --registry=https://registry.npm.taobao.org
 - hello world， 详情请看lesson1 进入lesson1 执行node app.js 服务器就跑起来了
-- express-generator 生成器
-- 使用html模版  
-    - 1) 安装ejs引擎 cnpm i ejs --save
-    - 2) app.js 中引入 ejs = require("ejs")
-    - 3) 创建引擎 app.engine("html", ejs.__express)
-    - 4) 设置视图路径 app.set('view engine', 'html');
+- express-generator 生成器 
+    - cnpm i express-generator -g 
+    - express hello 创建属于你的第一个express应用
+- 利用ejs使用html模版替换默认的jade模版 
+    - 安装ejs引擎 cnpm i ejs --save
+    - app.js 中引入 ejs = require("ejs")
+    - 创建引擎 app.engine("html", ejs.__express)
+    - 设置视图路径 app.set('view engine', 'html');
+    - 创建属于你的html模版
+- 执行 npm run start，访问http://localhost:3000/
