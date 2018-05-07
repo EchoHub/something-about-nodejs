@@ -6,11 +6,19 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
   next()
 }, function(req, res, next) {
-  console.log("======2=======")
+  console.log("/////////////////////")
 });
 router.get("/getInfo/:id", function(req, res, next) {
   console.log("ID:", req.params.id);
-  res.send(`Param: ${JSON.stringify(req.params)}`);
+  if(+req.params.id) next("route")
+  else next()
+}, function(req, res, next) {
+  // 渲染常规页面
+  res.send('regular');
 })
+
+router.get('/getInfo/:id', function (req, res, next) {
+  res.send('special');
+});
 
 module.exports = router;

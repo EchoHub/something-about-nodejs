@@ -47,22 +47,28 @@ app.all() 是一个特殊的路由方法，没有任何 HTTP 方法与其对应�
   - 创建router: express().route / express.Router()
 ### 中间件
 中间件（Middleware） 是一个函数，它可以访问请求对象（request object (req)）, 响应对象（response object (res)）, 和 web 应用中处于请求-响应循环流程中的中间件，一般被命名为 next 的变量，其作用是可以执行任意代码、处理请求和响应对象、终结请求-响应循环、调用堆栈中的下一个中间件。
-- 应用级中间件：可以绑定的app对象上使用app.user或者app.METHOD跳转不同的http请求
-- 路由级中间件：可以对一个路径配置多个不同的路由   
+- 应用级中间件：对应app（express的实例对象）可以绑定的app对象上使用app.user或者app.METHOD跳转不同的http请求
+- 路由级中间件：对应（express.Router的实例对象）可以对一个路径配置多个不同的路由   
     例如： app.get("/getInfo/:id", function(req, res, next) {   
         const id = req.params.id;   
-        if(id !== null) next("detail")   
+        if(id) next("detail")   
         else next()
     })
-- 错误处理中间件
-- 内置中间件
-- 第三方中间件
+- 错误处理中间件：function(err, req, res, next) 拥有四个参数
+- 内置中间件：https://github.com/senchalabs/connect#middleware
+- 第三方中间件：第三方包扩展express功能
 ### 模版引擎
-
-### 错误处理
-
+设置对应的渲染模版文件：
+- views 放模版的文件目录，app.set("views", "./views");
+- view engine 模版引擎，app.set("view engine", "jade") jade模版/ejs模版／html模版
+### 错误处理 
+- http://www.expressjs.com.cn/guide/error-handling.html
 ### 调试
-
+Express 内部使用 debug 模块记录路由匹配、使用到的中间件、应用模式以及请求-响应循环。   
+- 启动debug模式：DEBUG=express:* node index.js
+- DEBUG=express: ( * - 所有， router - 路由，application - 应用)
+- https://github.com/visionmedia/debug
 ### 为Express设置代理
-
+- http://www.expressjs.com.cn/guide/behind-proxies.html
 ### 数据库集成
+- http://www.expressjs.com.cn/guide/database-integration.html

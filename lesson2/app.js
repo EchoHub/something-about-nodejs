@@ -3,6 +3,7 @@ var express = require('express');
 var ejs = require('ejs');
 var path = require('path');
 var cookieParser = require('cookie-parser');
+var methodOverride = require('method-override');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
@@ -15,6 +16,7 @@ app.engine("html", ejs.__express);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'html');
 
+app.use(methodOverride());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
