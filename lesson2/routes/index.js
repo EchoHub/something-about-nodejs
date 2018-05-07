@@ -4,6 +4,10 @@ var router = express.Router();
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
+  console.log("======1=======")
+  next()
+}, function(req, res, next) {
+  console.log("======2=======")
 });
 
 module.exports = router;
