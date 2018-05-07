@@ -47,8 +47,13 @@ app.all() 是一个特殊的路由方法，没有任何 HTTP 方法与其对应�
   - 创建router: express().route / express.Router()
 ### 中间件
 中间件（Middleware） 是一个函数，它可以访问请求对象（request object (req)）, 响应对象（response object (res)）, 和 web 应用中处于请求-响应循环流程中的中间件，一般被命名为 next 的变量，其作用是可以执行任意代码、处理请求和响应对象、终结请求-响应循环、调用堆栈中的下一个中间件。
-- 应用级中间件
-- 路由级中间件
+- 应用级中间件：可以绑定的app对象上使用app.user或者app.METHOD跳转不同的http请求
+- 路由级中间件：可以对一个路径配置多个不同的路由   
+    例如： app.get("/getInfo/:id", function(req, res, next) {   
+        const id = req.params.id;   
+        if(id !== null) next("detail")   
+        else next()
+    })
 - 错误处理中间件
 - 内置中间件
 - 第三方中间件
