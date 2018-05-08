@@ -17,6 +17,36 @@
     - 这种方式是将先讲文件读取到内容，再进行磁盘修改，不适合大文件拷贝
 - 大文件拷贝 
     - createReadStream/createWriteStream 通过createReadStream创建一个源文件读取流，再通过createWriteStream创建一个目标文件的只写数据流
+- Buffer 数据块，二进制数据操作  http://nodejs.org/api/buffer.html
+    - 二进制转字符串 bin.toString("utf-8")
+    - 字符串转二进制 new Buffer("hello", "utf-8")
+- Stream 数据流 http://nodejs.org/api/stream.html
+    - createReadStream  
+    var rs = fs.createReadStream(src);  
+    rs.on('data', function (chunk) {  
+        rs.pause();  
+        doSomething(chunk, function () {  
+            rs.resume();  
+        });  
+    });  
+    rs.on('end', function () {  
+        cleanUp();  
+    });
+    - createWriteStream  
+    var rs = fs.createReadStream(src);  
+    var ws = fs.createWriteStream(dst);  
+    rs.on('data', function (chunk) {  
+        if (ws.write(chunk) === false) {  
+            rs.pause();  
+        }  
+    });  
+    rs.on('end', function () {  
+        ws.end();  
+    });  
+    ws.on('drain', function () {  
+        rs.resume();  
+    });  
+- File System 文件系统
 ### Express使用
 ####  Hello World
 - express 安装 npm i express -g  
