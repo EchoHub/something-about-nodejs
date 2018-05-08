@@ -51,6 +51,46 @@
         - 文件属性读写 fs.stat、fs.chmod、fs.chown等
         - 文件内容读写 fs.readFile、fs.readdir、fs.writeFile、fs.mkdir等
         - 底层文件读写 fs.open、fs.read、fs.write、fs.close等
+- Path 路径 文件路径  http://nodejs.org/api/path.html
+    - path.normalize 将传入的路径转化为标准路径，可解析路径中的.和..,也可去掉多余的斜杠 ps:标准化之后的路径里的斜杠在Windows系统下是\，而在Linux系统下是/。如果想保证任何系统下都使用/作为路径分隔符的话，需要用.replace(/\\/g, '/')再替换一下标准路径。
+    - path.join 把传入的多个路径拼接成标准路径
+    - path.extname 获取文件的扩展名称
+- 遍历目录 
+    - 常见的遍历算法：递归算法、深度优先+先序遍历算法
+    - 同步遍历  
+    function travel(dir, callback) {  
+        fs.readdirSync(dir).forEach(function(file) {  
+            var pathname = path.join(dir, file);  
+            if(fs.statSync(pathname).isDirectory()) {  
+                travel(pathname, callback)
+            }else {  
+                callback(pathname)
+            }
+        })
+    }
+    - 异步遍历  
+    function travel(dir, callback, finish) {  
+        fs.readdir(dir, function(err, files) {  
+            (function next(i) {  
+                if (i < files.length) {  
+                    var pathname = path.join(dir, files[i]);
+                    fs.stat(pathname, function(err, stats) {  
+                        if(stas.isDirectory()) {  
+                            travel(pathname, callback, function () {  
+                                next(i + 1)
+                            })  
+                        } else {   
+                            callback(pathname, function() {  
+                                next(i + 1)
+                            })
+                        }
+                    })
+                } else {  
+                    finish && finish();
+                }
+            })(0)
+        })
+    }
 ### Express使用
 ####  Hello World
 - express 安装 npm i express -g  
