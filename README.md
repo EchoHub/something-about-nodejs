@@ -46,7 +46,11 @@
     ws.on('drain', function () {  
         rs.resume();  
     });  
-- File System 文件系统
+- File System 文件系统 http://nodejs.org/api/fs.html
+    - 通过fa模块进行文件操作，其操作类型主要有三类：
+        - 文件属性读写 fs.stat、fs.chmod、fs.chown等
+        - 文件内容读写 fs.readFile、fs.readdir、fs.writeFile、fs.mkdir等
+        - 底层文件读写 fs.open、fs.read、fs.write、fs.close等
 ### Express使用
 ####  Hello World
 - express 安装 npm i express -g  
