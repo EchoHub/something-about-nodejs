@@ -28,4 +28,17 @@ router.get("/readInfoSync", function(req, res, next) {
     res.send(error);
   }
 })
+router.get("/readdir", function(req, res, next) {
+    const pathname = "/Users/xuyang/x-echo/something-about-nodejs/lesson2/mock";
+    let article = "";
+    fs.readdirSync(pathname).forEach((file, index) => {
+        const _p = path.join(pathname, file);
+        if(!fs.statSync(_p).isDirectory()) {
+            const content = fs.readFileSync(_p).toString("utf-8");
+            article += content;
+        }
+        article += "\n";
+    })
+    res.send(article)
+});
 module.exports = router;

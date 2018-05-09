@@ -92,6 +92,30 @@
         })
     }
 ### 文本编码
+- GBK转UTF8  
+NodeJS支持在读取文本文件时，或者在Buffer转换为字符串时指定文本编码，但遗憾的是，GBK编码不在NodeJS自身支持范围内。因此，一般我们借助iconv-lite这个三方包来转换编码。使用NPM下载该包后，我们可以按下边方式编写一个读取GBK文本文件的函数。
+### 网络操作
+- http  http://nodejs.org/api/http.html 
+    - http的常用方式有两种：
+        - 作为服务端使用时，创建一个http服务器，监听http客户端的请求并作出响应
+        - 作为客户端使用时，创建一个http客户端请求，获取服务端响应
+- https  http://nodejs.org/api/https.html
+    - https与http类似，区别在于https需要额外处理SSL证书
+- URL http://nodejs.org/api/url.html
+    - .parse 将一个URL字符串转为URL对象
+    - .format 将URL对象转为URL字符串
+    - .resolve 用于拼接URL
+    - ...
+- Query String 模块用于实现URL参数字符串与参数对象的互相转换  http://nodejs.org/api/querystring.html
+    - querystring.parse 字符串转对象
+    例如： querystring.parse('foo=bar&baz=qux&baz=quux&corge') --> { foo: 'bar', baz: ['qux', 'quux'], corge: '' }
+    - querystring.stringify 对象转字符串  
+    例如： querystring.stringify({ foo: 'bar', baz: ['qux', 'quux'], corge: '' }) --> 'foo=bar&baz=qux&baz=quux&corge='
+- Zlib zlib模块提供了数据压缩和解压的功能  http://nodejs.org/api/zlib.html
+- Net net模块可用于创建Socket服务器或Socket客户端  http://nodejs.org/api/net.html
+### 进程管理
+### 异步编程
+### 示例
 ### Express使用
 ####  Hello World
 - express 安装 npm i express -g  
